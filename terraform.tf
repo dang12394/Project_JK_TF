@@ -26,6 +26,7 @@ provider "docker" {
     username = azurerm_container_registry.my_acr.admin_username
     password = azurerm_container_registry.my_acr.admin_password
   }
+  
 }
 
 provider "azurerm" {
