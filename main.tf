@@ -4,7 +4,7 @@ resource "docker_registry_image" "webapp" {
 }
 
 resource "docker_image" "webapp" {
-  name = "dang12394/webapp:1.0"
+  name         = "dang12394/webapp:1.0"
   keep_locally = false
   build {
     context    = "${path.cwd}/react-nodejs-mysql/bezkoder-ui"
@@ -13,6 +13,6 @@ resource "docker_image" "webapp" {
 }
 
 resource "azurerm_resource_group" "name" {
-  name = "Project_RG"
+  name     = "Project_RG"
   location = "southeastasia"
 }
