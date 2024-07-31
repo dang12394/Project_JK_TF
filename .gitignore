@@ -261,4 +261,5 @@ pub/
 
 .azure
 .terraform
+*.tfstate
 terraform.tfstate
