@@ -24,7 +24,7 @@ resource "docker_image" "webapp" {
   keep_locally = false
   build {
     context    = "${path.cwd}/react-nodejs-mysql/bezkoder-ui"
-    dockerfile = "${path.cwd}/react-nodejs-mysql/bezkoder-ui/Dockerfile"
+    dockerfile = "Dockerfile"
     build_args = {
       REACT_APP_API_BASE_URL = "http://127.0.0.1:6868/api"
     }
@@ -37,7 +37,7 @@ resource "docker_image" "api" {
   keep_locally = false
   build {
     context    = "${path.cwd}/react-nodejs-mysql/bezkoder-api"
-    dockerfile = "${path.cwd}/react-nodejs-mysql/bezkoder-api/Dockerfile"
+    dockerfile = "Dockerfile"
   }
 }
 
