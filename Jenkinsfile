@@ -1,14 +1,14 @@
 pipeline {
     agent any
     tools {
-        
+
         terraform 'terraform'
     }
     stages {
 
         stage('Clone') {
             steps {
-                git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/dang12394/Project_JK_TF.git'
+                git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/dang12394/Project_JK_TF'
             }
         }
         stage('Terraform init') {
