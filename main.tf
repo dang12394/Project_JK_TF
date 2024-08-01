@@ -56,7 +56,7 @@ resource "docker_container" "webapp" {
     host_path = "D:\\Project_JK_TF\\php-apache-mysql\\public"
     container_path = "/var/www/html/"
   }
-  depends_on = [docker_container.mysqldb,docker_container.webapp]
+  depends_on = [docker_container.mysqldb,docker_container.api]
 }
 
 # resource "docker_container" "mysqldb" {
