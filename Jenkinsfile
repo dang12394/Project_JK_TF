@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    stage{
+    stages {
         stage('Clone') {
             steps {
                 git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/dang12394/Project_JK_TF.git'
