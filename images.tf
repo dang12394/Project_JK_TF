@@ -35,7 +35,7 @@ resource "docker_image" "webapp" {
   name         = "${azurerm_container_registry.my_acr.login_server}/webapp:1.0"
   keep_locally = false
   build {
-    context    = "${path.cwd}/php-apache-mysql/php"
+    context    = "${path.cwd}/php-apache-mysql/apache"
     dockerfile = "Dockerfile"
   }
 }
@@ -45,7 +45,7 @@ resource "docker_image" "api" {
   name         = "${azurerm_container_registry.my_acr.login_server}/api:1.0"
   keep_locally = false
   build {
-    context    = "${path.cwd}/php-apache-mysql/apache"
+    context    = "${path.cwd}/php-apache-mysql/php"
     dockerfile = "Dockerfile"
   }
 }

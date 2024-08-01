@@ -40,7 +40,7 @@ resource "docker_container" "api" {
   name  = "php"
   image = docker_image.api.image_id
   volumes {
-    host_path = "/php-apache-mysql/public"
+    host_path = "D:\\Project_JK_TF\\php-apache-mysql\\public"
     container_path = "/var/www/html/"
   }
 }
@@ -53,7 +53,7 @@ resource "docker_container" "webapp" {
     external = "8081"
   }
   volumes {
-    host_path = "/php-apache-mysql/public"
+    host_path = "D:\\Project_JK_TF\\php-apache-mysql\\public"
     container_path = "/var/www/html/"
   }
   depends_on = [docker_container.mysqldb,docker_container.webapp]
@@ -81,7 +81,7 @@ resource "docker_container" "webapp" {
 #   }
 # }
 resource "docker_container" "mysqldb" {
-  name    = "mysqldb"
+  name    = "mysql"
   image   = "mysql:5.7"
   restart = "always"
   env = [
@@ -100,7 +100,7 @@ resource "docker_container" "mysqldb" {
   }
 
   volumes {
-    host_path = "/php-apache-mysql/public/dump"
+    host_path = "D:\\Project_JK_TF\\php-apache-mysql\\public\\dump"
     container_path = "/docker-entrypoint-initdb.d/"
   }
 }
