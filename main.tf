@@ -100,7 +100,7 @@ resource "docker_container" "mysqldb" {
   }
 
   volumes {
-    host_path = "./php-apache-mysql/public/dump"
+    host_path = "/php-apache-mysql/public/dump"
     container_path = "/docker-entrypoint-initdb.d/"
   }
 }
