@@ -5,7 +5,7 @@ terraform {
     workspaces {
       name = "Project_DevOps"
     }
-    token = "mjHfpoDE59JSMg.atlasv1.8oykzsJANahKKxaeSpjMyY2B8LUlUvJyzOKpMndGuDN125gB1y0qhzPL4WPFi4mZZUI"
+    
   }
   required_providers {
     docker = {
