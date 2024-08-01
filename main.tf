@@ -8,7 +8,7 @@ resource "docker_container" "webapp" {
   networks_advanced {
     name = docker_network.frontend.name
   }
-  depends_on = [ docker_container.api ]
+  depends_on = [docker_container.api]
 }
 
 resource "docker_container" "api" {
@@ -33,7 +33,7 @@ resource "docker_container" "api" {
   networks_advanced {
     name = docker_network.backend.name
   }
-  depends_on = [ docker_container.mysqldb ]
+  depends_on = [docker_container.mysqldb]
 }
 
 resource "docker_container" "mysqldb" {
