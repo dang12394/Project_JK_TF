@@ -3,7 +3,7 @@ resource "docker_container" "webapp" {
   image = docker_image.webapp.image_id
   ports {
     internal = "80"
-    external = "8888"
+    external = "8887"
   }
   networks_advanced {
     name = docker_network.frontend.name
