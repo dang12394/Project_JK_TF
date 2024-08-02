@@ -18,6 +18,7 @@ resource "docker_registry_image" "api" {
   keep_remotely = false
 }
 
+
 # resource "docker_image" "webapp" {
 #   provider     = docker
 #   name         = "${azurerm_container_registry.my_acr.login_server}/webapp:1.0"
@@ -25,27 +26,15 @@ resource "docker_registry_image" "api" {
 #   build {
 #     context    = "${path.cwd}/react-nodejs-mysql/bezkoder-ui"
 #     dockerfile = "Dockerfile"
-#     build_args = {
-#       REACT_APP_API_BASE_URL = "http://127.0.0.1:6868/api"
-#     }
 #   }
 # }
-resource "docker_image" "webapp" {
-  provider     = docker
-  name         = "${azurerm_container_registry.my_acr.login_server}/webapp:1.0"
-  keep_locally = false
-  build {
-    context    = "${path.cwd}/php-apache-mysql/apache"
-    dockerfile = "Dockerfile"
-  }
-}
 
 resource "docker_image" "api" {
   provider     = docker
   name         = "${azurerm_container_registry.my_acr.login_server}/api:1.0"
   keep_locally = false
   build {
-    context    = "${path.cwd}/php-apache-mysql/php"
+    context    = "${path.cwd}/react-nodejs-mysql/bezkoder-api"
     dockerfile = "Dockerfile"
   }
 }
@@ -54,4 +43,16 @@ resource "docker_image" "api" {
 resource "azurerm_resource_group" "rg" {
   name     = "Project_RG"
   location = var.region
+}
+resource "docker_image" "webapp" {
+  provider     = docker
+  name         = "${azurerm_container_registry.my_acr.login_server}/webapp:1.0"
+  keep_locally = false
+  build {
+    context    = "${path.cwd}/react-nodejs-mysql/bezkoder-ui"
+    dockerfile = "Dockerfile"
+    build_args = {
+      REACT_APP_API_BASE_URL = "http://127.0.0.1:6868/api"
+    }
+  }
 }
