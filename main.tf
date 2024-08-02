@@ -57,7 +57,7 @@ resource "docker_container" "webapp" {
     container_path = "/var/www/html/"
   }
   host {
-    ip = "172.16.0.6"
+    ip = "172.16.0.5"
     host = "php"
   }
   depends_on = [docker_container.mysqldb,docker_container.api]
