@@ -43,6 +43,12 @@ resource "docker_container" "api" {
     host_path = "${path.cwd}/php-apache-mysql/public"
     container_path = "/var/www/html/"
   }
+  networks_advanced {
+     name = docker_network.frontend.name
+  }
+  networks_advanced {
+     name = docker_network.backend.name
+  }
 }
 
 resource "docker_container" "webapp" {
@@ -56,9 +62,8 @@ resource "docker_container" "webapp" {
     host_path = "${path.cwd}/php-apache-mysql/public"
     container_path = "/var/www/html/"
   }
-  host {
-    ip = "172.16.0.5"
-    host = "php"
+  networks_advanced {
+     name = docker_network.frontend.name
   }
   depends_on = [docker_container.mysqldb,docker_container.api]
 }
@@ -107,19 +112,22 @@ resource "docker_container" "mysqldb" {
     host_path = "${path.cwd}/php-apache-mysql/public/dump"
     container_path = "/docker-entrypoint-initdb.d/"
   }
+  networks_advanced {
+     name = docker_network.backend.name
+  }
 }
 
-# resource "docker_network" "frontend" {
-#   name       = "frontend"
-#   attachable = true
-#   driver     = "bridge"
-# }
+resource "docker_network" "frontend" {
+  name       = "frontend"
+  attachable = true
+  driver     = "bridge"
+}
 
-# resource "docker_network" "backend" {
-#   name       = "backend"
-#   attachable = true
-#   driver     = "bridge"
-# }
+resource "docker_network" "backend" {
+  name       = "backend"
+  attachable = true
+  driver     = "bridge"
+}
 
 resource "docker_volume" "db" {
   name = "db_data"
